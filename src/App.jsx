@@ -1,61 +1,35 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import Description from "./components/Description/Description";
-import Feedback from "./components/Feedback/Feedback";
-import Options from "./components/Options/Options";
-import Notification from "./components/Notification/Notification";
 import Container from "./components/Container/Container";
+import ContactForm from "./components/ContactForm/ContactForm";
+import SearchBox from "./components/SearchBox/SearchBox";
+import ContactList from "./components/ContactList/ContactList";
+import { useState } from "react";
 
-function App() {
-  const [feedback, setFeedback] = useState(() => {
-    const savedFeedback = window.localStorage.getItem("feedback");
-    if (savedFeedback !== null) {
-      return JSON.parse(savedFeedback);
-    }
+const App = () => {
+  const [contacts, setContacts] = useState([
+    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  ]);
 
-    return {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    };
-  });
-
-  useEffect(() => {
-    window.localStorage.setItem("feedback", JSON.stringify(feedback));
-  }, [feedback]);
-
-  const updateFeedback = (feedbackType) => {
-    setFeedback({ ...feedback, [feedbackType]: feedback[feedbackType] + 1 });
+  const [text, setText] = useState("");
+  const handleChange = (value) => {
+    setText(value);
   };
 
-  const handleReset = () => {
-    setFeedback({ good: 0, neutral: 0, bad: 0 });
-  };
-
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+  const filterContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(text.toLowerCase())
+  );
 
   return (
     <Container>
-      <Description />
-      <Options
-        updateFeedback={updateFeedback}
-        totalFeedback={totalFeedback}
-        handleReset={handleReset}
-      />
-      {totalFeedback > 0 ? (
-        <Feedback
-          good={feedback.good}
-          neutral={feedback.neutral}
-          bad={feedback.bad}
-          totalFeedback={totalFeedback}
-          positiveFeedback={positiveFeedback}
-        />
-      ) : (
-        <Notification />
-      )}
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <SearchBox handleChange={handleChange} value={text} />
+      <ContactList contacts={filterContacts} />
     </Container>
   );
-}
+};
 
 export default App;
