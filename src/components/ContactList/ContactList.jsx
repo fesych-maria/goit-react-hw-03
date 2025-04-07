@@ -1,11 +1,16 @@
 import Contact from "../Contact/Contact";
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, deleteContacts }) => {
   return (
     <ul>
       {contacts.map((contact) => (
         <li key={contact.id}>
-          <Contact name={contact.name} number={contact.number} />
+          <Contact
+            name={contact.name}
+            number={contact.number}
+            id={contact.id}
+            handleClick={deleteContacts}
+          />
         </li>
       ))}
     </ul>
