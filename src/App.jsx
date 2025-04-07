@@ -41,7 +41,10 @@ const App = () => {
     setContacts((prevContacts) =>
       prevContacts.filter((contact) => contact.id !== id)
     );
+    setText("");
+    // if (contacts.length === 1) {
     // setText("");
+    // }
   };
 
   return (
