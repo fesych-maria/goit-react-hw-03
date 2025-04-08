@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 20px;
+  background-color: #f5d7d7;
+  border-radius: 6px;
+  min-width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  button {
+    background-color: #c96a6a;
+    padding: 10px 12px;
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 6px;
+    height: 100%;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      background-color: #b35959;
+      color: #ebdada;
+    }
+  }
+}

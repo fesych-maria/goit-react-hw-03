@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <Container>
-      <h1>Phonebook</h1>
+      <h1 className="heading">Phonebook</h1>
       <ContactForm addContacts={addContacts} />
       <SearchBox handleChange={handleChange} value={text} />
       <ContactList contacts={filterContacts} deleteContacts={deleteContacts} />
