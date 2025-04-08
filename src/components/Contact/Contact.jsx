@@ -1,11 +1,19 @@
 import css from "./Contact.module.css";
+import { FaUser } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const Contact = ({ name, number, id, handleClick }) => {
   return (
     <div className={css.wrapper}>
       <div>
-        <p>{name}</p>
-        <p>{number}</p>
+        <div>
+          <FaUser />
+          <p>{name}</p>
+        </div>
+        <div>
+          <FaPhoneAlt />
+          <p>{number}</p>
+        </div>
       </div>
       <button onClick={() => handleClick(id)}>Delete</button>
     </div>

@@ -27,7 +27,6 @@ const ContactForm = ({ addContacts }) => {
   const handleSubmit = (values, actions) => {
     const id = nanoid();
     const contactData = { ...values, id };
-    console.log(contactData);
     addContacts(contactData);
     actions.resetForm();
   };
@@ -48,7 +47,7 @@ const ContactForm = ({ addContacts }) => {
 
           <div>
             <label htmlFor={numberFieldId}>Number</label>
-            <Field name="number" id={numberFieldId} />
+            <Field type="number" name="number" id={numberFieldId} />
             <ErrorMessage name="number" component="span" />
           </div>
         </div>
